@@ -1,0 +1,57 @@
+<!Doctype html>
+<head>
+	<title>Good Slideshow - Demo</title>
+	<meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0" />
+	<link rel="stylesheet" type="text/css" href="../css/goodSlideshow.css" />
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+	<script src="../goodSlideshow.js" type="text/javascript"></script>
+
+	<style>
+
+		body{
+			padding-top:100px;
+			color:#333;
+			font-family: 'Arial', sans-serif;
+		}
+
+		a{
+			color:#389adc;
+		}
+
+		.container{
+			display:block;
+			max-width:85%;
+			width:640px;
+			margin:0 auto;
+			border:1px solid #ddd;
+			border-radius:3px;
+			padding:20px;
+		}
+
+	</style>
+
+</head>
+<body>
+	
+	<div class="container">
+		<h3>Good Slideshow - Demo</h3>
+		<p>Cycle through a good slideshow with Good-Slideshow!</p>
+		<ul data-slideshow>
+			<li><img src="img/1.jpg"></li>
+			<li><img src="img/2.jpg"></li>
+			<li><img src="img/3.jpg"></li>
+		</ul>
+
+		<ul data-slideshow>
+			<li><img src="img/4.jpg"></li>
+			<li><img src="img/5.jpg"></li>
+			<li><img src="img/6.jpg"></li>
+		</ul>
+
+	</div>
+
+<script>
+goodSlideshow.init();
+</script>
+
+</body>
