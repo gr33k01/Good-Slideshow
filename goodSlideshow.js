@@ -16,9 +16,9 @@ var goodSlideshow = {
     animationActive: false,
 
     init: function(config) {
-        var prevBtn = '<li data-prev>' + goodSlideshow.config.prevBtnText + '</li>';
-        var nextBtn = '<li data-next>' + goodSlideshow.config.nextBtnText + '</li>';
-        var navigation = '<ul class="ss-navigation">' + '\n' + prevBtn + '\n' + nextBtn + '\n' + '</ul>';
+        var prevBtn = '<li data-prev>' + goodSlideshow.config.prevBtnText + '</li>',
+            nextBtn = '<li data-next>' + goodSlideshow.config.nextBtnText + '</li>',
+            navigation = '<ul class="ss-navigation">' + '\n' + prevBtn + '\n' + nextBtn + '\n' + '</ul>';
 
         // Allow overriding the default settings
         $.extend(goodSlideshow.config, config);
@@ -39,11 +39,7 @@ var goodSlideshow = {
             return;
         }
 
-        goodSlideshow.next(target, function() {
-            var appendThis = $(target.children[1]).detach();
-            $(target).append(appendThis);
-            goodSlideshow.animationActive = false;
-        });
+        goodSlideshow.next(target);
     },
 
     setCssTransitions: function(){
@@ -60,12 +56,12 @@ var goodSlideshow = {
 
         goodSlideshow.config.cssVendorPrefix = (function() {
 
-            var computedStyles = window.getComputedStyle(document.documentElement, '');
-            var prefix = (Array.prototype.slice
-                .call(computedStyles)
-                .join('')
-                .match(/-(moz|webkit|ms)-/))[1];
-
+            var computedStyles = window.getComputedStyle(document.documentElement, ''),
+                prefix = (Array.prototype.slice
+                                .call(computedStyles)
+                                .join('')
+                                .match(/-(moz|webkit|ms)-/))[1];
+                
             return '-' + prefix + '-';
         }());
 
@@ -87,11 +83,16 @@ var goodSlideshow = {
         }, goodSlideshow.config.disableDuration);
     },
 
-    next: function(activeTarget, callback) {
-        var target = $(activeTarget.children[1]).detach();
+    next: function(activeSlideshow) {
+        var targetImg = $(activeSlideshow.children[1]).detach();
 
-        $(activeTarget).prepend(target);
+        $(activeSlideshow).prepend(targetImg);
         goodSlideshow.animationActive = true;
-        window.setTimeout(callback, goodSlideshow.config.disableDuration);
+
+        window.setTimeout(function() {
+            var imgToAppend = $(activeSlideshow.children[1]).detach();
+            $(activeSlideshow).append(imgToAppend);
+            goodSlideshow.animationActive = false;
+        }, goodSlideshow.config.disableDuration);
     }
 }
