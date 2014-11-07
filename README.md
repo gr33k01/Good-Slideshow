@@ -23,6 +23,7 @@
 
 ```html
 <link href="path/to/goodSlideshow.css" type="text/css" rel="stylesheet" />
+...
 <script src="path/to/jQuery.js" type="text/javascript"></script>
 ...
 <script src="path/to/goodSlideshow.js" type="text/javascript"></script>
